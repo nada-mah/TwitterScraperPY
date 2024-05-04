@@ -9,8 +9,8 @@ def is_valid_url(url):
 
 account_list = []
 
-for i in range(2):
-    ACC = str(input("Enter 10 twitter accounts : "))
+for i in range(10):
+    ACC = str(input("Enter 10 twitter accounts one at a time : "))
     if is_valid_url(ACC):
         account_list.append(ACC)
     else:
