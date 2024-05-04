@@ -18,7 +18,7 @@ for i in range(2):
 
 
 Ticker = str(input('Enter stock symbol: '))
-interval = int(input('Enter time interval: '))
+interval = int(input('Enter time interval in min: '))
 
 get_data(account_list,Ticker,interval)
 schedule.every(interval).minutes.do(lambda :get_data(account_list,Ticker,interval)) 
@@ -26,4 +26,3 @@ schedule.every(interval).minutes.do(lambda :get_data(account_list,Ticker,interva
 while True: 
     schedule.run_pending() 
     time.sleep(1) 
-

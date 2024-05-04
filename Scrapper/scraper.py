@@ -7,30 +7,33 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from bs4 import BeautifulSoup
-from scraper import get_profile
 
 def get_profile(Account_list): 
+    """
+    
+    """
     resp = []
     options = ChromeOptions()
     options.add_argument('headless')
     options.add_argument("--start-maximized")
+    options.add_argument('log-level=3')
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=options)
     for url in Account_list:
         driver.get(url)
-        # try:
-        #     x = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "a[href='/login'] span > span")))
-        # except:
-        #     x = None
-        # if x:
-        #     x.click()    
-        #     username = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[autocomplete="username"]')))
-        #     username.send_keys("olive727963")
-        #     username.send_keys(Keys.ENTER)
+        try:
+            x = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "a[href='/login'] span > span")))
+        except:
+            x = None
+        if x:
+            x.click()    
+            username = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[autocomplete="username"]')))
+            username.send_keys("")
+            username.send_keys(Keys.ENTER)
 
-        #     password = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[name="password"]')))
-        #     password.send_keys("ujbnAufk%pg7!Bw")
-        #     password.send_keys(Keys.ENTER)
-            # time.sleep(5)   
+            password = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[name="password"]')))
+            password.send_keys("")
+            password.send_keys(Keys.ENTER)
+            time.sleep(5)   
         driver.execute_script("window.scrollTo(0, 1000);")
         time.sleep(5)
         resp.append(driver.page_source)
