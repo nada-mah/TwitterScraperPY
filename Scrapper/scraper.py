@@ -40,9 +40,10 @@ def get_profile(Account_list):
             password = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CSS_SELECTOR, 'input[name="password"]')))
             password.send_keys(environ.get("PASSWORD"))
             password.send_keys(Keys.ENTER)
-            time.sleep(5)   
+            time.sleep(2)   
         driver.execute_script("window.scrollTo(0, 1000);")
-        time.sleep(5)
+        time.sleep(1)
+        print('scraping....',url)
         resp.append(driver.page_source)
     driver.close()
     return resp
